@@ -237,6 +237,9 @@ install(TARGETS ${LIB_NAME}
   ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
   LIBRARY DESTINATION "${INSTALL_LIB_DIR}")
 
+# Install the export set for use with the install-tree
+install(EXPORT ZLIBTargets DESTINATION "${INSTALL_CMAKE_DIR}")
+
 install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION "${INSTALL_INC_DIR}")
 
 if(UNIX)
@@ -249,7 +252,7 @@ set(ZLIB_VERSION ${VERSION})
 if(WIN32 AND NOT CYGWIN)
   set(DEF_INSTALL_CMAKE_DIR CMake)
 else()
-  set(DEF_INSTALL_CMAKE_DIR lib/CMake/ZLIB)
+  set(DEF_INSTALL_CMAKE_DIR lib/CMake/zlib)
 endif()
 set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
   "Installation directory for CMake files")
@@ -289,6 +292,3 @@ install(FILES
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ZLIBConfig.cmake"
   "${CMAKE_BINARY_DIR}/ZLIBConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" )
-
-# Install the export set for use with the install-tree
-install(EXPORT ZLIBTargets DESTINATION "${INSTALL_CMAKE_DIR}")
