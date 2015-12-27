@@ -236,8 +236,7 @@ elseif(BUILD_SHARED_LIBS AND WIN32)
   set_target_properties(${LIB_NAME} PROPERTIES SUFFIX "1.dll")
 endif()
 
-export(TARGETS ${LIB_NAME}
-  FILE "${CMAKE_BINARY_DIR}/ZLIBTargets.cmake")
+message(WARNING "zlib LIB_NAME=${LIB_NAME}")
 
 install(TARGETS ${LIB_NAME}
   EXPORT ZLIBTargets
@@ -245,8 +244,8 @@ install(TARGETS ${LIB_NAME}
   ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
   LIBRARY DESTINATION "${INSTALL_LIB_DIR}")
 
-# Install the export set for use with the install-tree
-install(EXPORT ZLIBTargets DESTINATION "${INSTALL_CMAKE_DIR}")
+export(TARGETS ${LIB_NAME}
+  FILE "${CMAKE_BINARY_DIR}/ZLIBTargets.cmake")
 
 install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION "${INSTALL_INC_DIR}")
 
@@ -292,3 +291,6 @@ install(FILES
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ZLIBConfig.cmake"
   "${CMAKE_BINARY_DIR}/ZLIBConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" )
+
+# Install the export set for use with the install-tree
+install(EXPORT ZLIBTargets DESTINATION "${INSTALL_CMAKE_DIR}")
