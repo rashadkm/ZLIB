@@ -269,9 +269,8 @@ foreach(p LIB BIN INCLUDE CMAKE)
   endif()
 endforeach()
 
-if(CMAKE_BUILD_TYPE STREQUAL "")
-  set(CONFIG_TYPE "NOCONFIG")
-else()
+set(CONFIG_TYPE "NOCONFIG")
+if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "")
   string(TOUPPER ${CMAKE_BUILD_TYPE} CONFIG_TYPE)
 endif()
 
