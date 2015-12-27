@@ -212,41 +212,34 @@ if(NOT CYGWIN)
     set_target_properties(${LIB_NAME} PROPERTIES VERSION ${ZLIB_FULL_VERSION})
 endif()
 
-
 set(LIB_NAME)
 if(UNIX)
-    # On unix-like platforms the library is almost always called libz
-    if(BUILD_SHARED_LIBS)
-      set_target_properties(${LIB_NAME} PROPERTIES OUTPUT_NAME z)
-    else()
-      set_target_properties(${LIB_NAME} PROPERTIES OUTPUT_NAME z)
-    endif()
-    if(NOT APPLE)
-      set_target_properties(${LIB_NAME} PROPERTIES LINK_FLAGS "-Wl,--version-script,\"${CMAKE_CURRENT_SOURCE_DIR}/zlib.map\"")
-    endif()
+  # On unix-like platforms the library is almost always called libz
+  if(BUILD_SHARED_LIBS)
+    set_target_properties(${LIB_NAME} PROPERTIES OUTPUT_NAME z)
+  else()
+    set_target_properties(${LIB_NAME} PROPERTIES OUTPUT_NAME z)
+  endif()
+  if(NOT APPLE)
+    set_target_properties(${LIB_NAME} PROPERTIES LINK_FLAGS "-Wl,--version-script,\"${CMAKE_CURRENT_SOURCE_DIR}/zlib.map\"")
+  endif()
 elseif(BUILD_SHARED_LIBS AND WIN32)
-    # Creates zlib1.dll when building shared library version
-    set_target_properties(${LIB_NAME} PROPERTIES SUFFIX "1.dll")
+  # Creates zlib1.dll when building shared library version
+  set_target_properties(${LIB_NAME} PROPERTIES SUFFIX "1.dll")
 endif()
 
-if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL )
-  install(TARGETS ${LIB_NAME}
-    EXPORT ZLIBTargets
-    RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
-    ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
-    LIBRARY DESTINATION "${INSTALL_LIB_DIR}" )
-endif()
+install(TARGETS ${LIB_NAME}
+  EXPORT ZLIBTargets
+  RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
+  ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
+  LIBRARY DESTINATION "${INSTALL_LIB_DIR}")
 
-if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL )
-    install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION "${INSTALL_INC_DIR}")
-endif()
-if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )
+install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION "${INSTALL_INC_DIR}")
+
+if(UNIX)
     install(FILES zlib.3 DESTINATION "${INSTALL_MAN_DIR}/man3")
-endif()
-if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )
     install(FILES ${ZLIB_PC} DESTINATION "${INSTALL_PKGCONFIG_DIR}")
 endif()
-
 
 set(ZLIB_VERSION ${VERSION})
 
