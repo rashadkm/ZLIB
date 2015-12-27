@@ -198,6 +198,8 @@ If(MINGW)
     set(ZLIB_DLL_SRCS ${CMAKE_CURRENT_BINARY_DIR}/zlib1rc.obj)
 endif(MINGW)
 
+set(LIB_NAME)
+
 if(BUILD_SHARED_LIBS)
   set(LIB_NAME zlib)
   add_library(zlib SHARED ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
@@ -218,9 +220,8 @@ if(NOT CYGWIN)
     # This has no effect with MSVC, on that platform the version info for
     # the DLL comes from the resource file win32/zlib1.rc
     set_target_properties(${LIB_NAME} PROPERTIES VERSION ${ZLIB_FULL_VERSION})
-endif()
-
-set(LIB_NAME)
+  endif()
+  
 if(UNIX)
   # On unix-like platforms the library is almost always called libz
   if(BUILD_SHARED_LIBS)
