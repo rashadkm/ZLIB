@@ -237,8 +237,6 @@ elseif(BUILD_SHARED_LIBS AND WIN32)
   set_target_properties(${LIB_NAME} PROPERTIES SUFFIX "1.dll")
 endif()
 
-message(WARNING "zlib LIB_NAME=${LIB_NAME}")
-
 install(TARGETS ${LIB_NAME}
   EXPORT ZLIBTargets
   RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
