@@ -287,7 +287,7 @@ configure_file(ZLIBConfig.cmake.in
   "${PROJECT_BINARY_DIR}/ZLIBConfig.cmake" @ONLY)
 
 # ... for the install tree
-set(CONF_INCLUDE_DIRS "\${ZLIB_CMAKE_DIR}/${REL_INCLUDE_DIR}")
+set(CONF_INCLUDE_DIRS "\${INSTALL_CMAKE_DIR}/${REL_INCLUDE_DIR}")
 configure_file(ZLIBConfig.cmake.in
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ZLIBConfig.cmake" @ONLY)
 # ... for both
