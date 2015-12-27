@@ -63,6 +63,7 @@ check_include_file(unistd.h Z_HAVE_UNISTD_H)
 
 if(MSVC)
   set(CMAKE_BUILD_TYPE "Release")
+  set(BUILD_SHARED_LIBS OFF)
 #  message(STATUS "CMAKE_GENERATOR=${CMAKE_GENERATOR}")
  # set(CMAKE_DEBUG_POSTFIX "d")
   add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
@@ -173,8 +174,8 @@ file(READ ${CMAKE_CURRENT_SOURCE_DIR}/zlib.h _zlib_h_contents)
 string(REGEX REPLACE ".*#define[ \t]+ZLIB_VERSION[ \t]+\"([-0-9A-Za-z.]+)\".*"
     "\\1" ZLIB_FULL_VERSION ${_zlib_h_contents})
 
-#include(util)
-#report_version(libz ${ZLIB_FULL_VERSION})
+include(util)
+report_version(libz ${ZLIB_FULL_VERSION})
 
 if(MINGW)
     # This gets us DLL resource information when compiling on MinGW.
