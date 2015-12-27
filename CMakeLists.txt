@@ -61,6 +61,14 @@ endif()
 #
 check_include_file(unistd.h Z_HAVE_UNISTD_H)
 
+if(WIN32 AND NOT CYGWIN)
+  set(DEF_INSTALL_CMAKE_DIR CMake)
+else()
+  set(DEF_INSTALL_CMAKE_DIR lib/CMake/zlib)
+endif()
+set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
+  "Installation directory for CMake files")
+
 if(MSVC)
   set(CMAKE_BUILD_TYPE "Release")
   set(BUILD_SHARED_LIBS OFF)
@@ -248,14 +256,6 @@ if(UNIX)
 endif()
 
 set(ZLIB_VERSION ${VERSION})
-
-if(WIN32 AND NOT CYGWIN)
-  set(DEF_INSTALL_CMAKE_DIR CMake)
-else()
-  set(DEF_INSTALL_CMAKE_DIR lib/CMake/zlib)
-endif()
-set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
-  "Installation directory for CMake files")
  
 # Make relative paths absolute (needed later on)
 foreach(p LIB BIN INCLUDE CMAKE)
