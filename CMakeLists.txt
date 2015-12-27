@@ -299,6 +299,8 @@ install(FILES
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ZLIBConfig.cmake"
   "${CMAKE_BINARY_DIR}/ZLIBConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" )
- 
+
+message(WARNING "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
+message(WARNING "LIB_NAME=${LIB_NAME}")
 # Install the export set for use with the install-tree
 install(EXPORT ZLIBTargets DESTINATION "${INSTALL_CMAKE_DIR}")
