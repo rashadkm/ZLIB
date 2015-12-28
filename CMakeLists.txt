@@ -286,7 +286,7 @@ configure_file(ZLIBConfigVersion.cmake.in
 install(FILES
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/ZLIBConfig.cmake"
   "${CMAKE_BINARY_DIR}/ZLIBConfigVersion.cmake"
-  DESTINATION "${INSTALL_CMAKE_DIR}" )
+  DESTINATION ${DEF_INSTALL_CMAKE_DIR} )
 
 # Install the export set for use with the install-tree
 install(EXPORT ZLIBTargets DESTINATION ${DEF_INSTALL_CMAKE_DIR})
