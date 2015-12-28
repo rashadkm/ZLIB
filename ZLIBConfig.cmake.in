@@ -10,7 +10,7 @@ if(MSVC)
   message(STATUS "[ZLIB Debug 2] CONFIG_TYPE=@CONFIG_TYPE@")
   message(STATUS "[ZLIB Debug 2] LIB_NAME=@LIB_NAME@")
   file(READ ${ZLIB_CMAKE_DIR}/ZLIBTargets.cmake _zlib_targets_contents)
-  message(STATUS "[ZLIB Debug 2] _zlib_targets_contents=@_zlib_targets_contents@")
+  message(STATUS "[ZLIB Debug 2] _zlib_targets_contents=${_zlib_targets_contents}")
 endif()
 
 if(MSVC)
