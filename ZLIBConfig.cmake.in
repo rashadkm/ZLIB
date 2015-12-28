@@ -2,19 +2,18 @@
 get_filename_component(ZLIB_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 set(ZLIB_INCLUDE_DIR "@CONF_INCLUDE_DIRS@" PARENT_SCOPE)
 
+set(BUILD_SHARED_LIBS @BUILD_SHARED_LIBS@)
+
 if(NOT TARGET @LIB_NAME@ AND NOT ZLIB_BINARY_DIR)
   include("${ZLIB_CMAKE_DIR}/ZLIBTargets.cmake")
 endif()
 
 if(MSVC)
-  message(STATUS "[ZLIB Debug 2] CONFIG_TYPE=@CONFIG_TYPE@")
-  message(STATUS "[ZLIB Debug 2] LIB_NAME=@LIB_NAME@")
-  file(READ ${ZLIB_CMAKE_DIR}/ZLIBTargets.cmake _zlib_targets_contents)
-  message(STATUS "[ZLIB Debug 2] _zlib_targets_contents=${_zlib_targets_contents}")
-endif()
-
-if(MSVC)
-  get_target_property(LIB_LIB_FILENAME @LIB_NAME@ IMPORTED_IMPLIB_@CONFIG_TYPE@)
+  if(BUILD_SHARED_LIBS)
+    get_target_property(LIB_LIB_FILENAME @LIB_NAME@ IMPORTED_IMPLIB_@CONFIG_TYPE@)
+  else(BUILD_SHARED_LIBS)
+    get_target_property(LIB_LIB_FILENAME @LIB_NAME@ IMPORTED_LOCATION_@CONFIG_TYPE@)
+  endif(BUILD_SHARED_LIBS)
 else()
   get_target_property(LIB_LIB_FILENAME @LIB_NAME@ IMPORTED_LOCATION_@CONFIG_TYPE@)
 endif()
