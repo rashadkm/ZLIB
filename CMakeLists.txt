@@ -70,8 +70,8 @@ set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
   "Installation directory for CMake files")
 
 if(MSVC)
-  set(CMAKE_BUILD_TYPE "Release")
-  set(BUILD_SHARED_LIBS OFF)
+ # set(CMAKE_BUILD_TYPE "Release")
+#  set(BUILD_SHARED_LIBS OFF)
 #  message(STATUS "CMAKE_GENERATOR=${CMAKE_GENERATOR}")
  # set(CMAKE_DEBUG_POSTFIX "d")
   add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
