@@ -7,6 +7,11 @@ if(NOT TARGET @LIB_NAME@ AND NOT ZLIB_BINARY_DIR)
 endif()
 
 if(MSVC)
+  message(STATUS "[ZLIB Debug 2] CONFIG_TYPE=${CONFIG_TYPE}")
+  message(STATUS "[ZLIB Debug 2] LIB_NAME=${LIB_NAME}")
+endif()
+
+if(MSVC)
   get_target_property(LIB_LIB_FILENAME @LIB_NAME@ IMPORTED_IMPLIB_@CONFIG_TYPE@)
 else()
   get_target_property(LIB_LIB_FILENAME @LIB_NAME@ IMPORTED_LOCATION_@CONFIG_TYPE@)

@@ -70,9 +70,6 @@ set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
   "Installation directory for CMake files")
 
 if(MSVC)
-  message(STATUS "[ZLIB Debug] BUILD_SHARED_LIBS=${BUILD_SHARED_LIBS}")
-  message(STATUS "[ZLIB Debug] CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
-  message(STATUS "[ZLIB Debug] CMAKE_GENERATOR=${CMAKE_GENERATOR}")
   #set(CMAKE_DEBUG_POSTFIX "d")
   add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
   add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)
@@ -237,6 +234,13 @@ elseif(BUILD_SHARED_LIBS AND WIN32)
   set_target_properties(${LIB_NAME} PROPERTIES SUFFIX "1.dll")
 endif()
 
+if(MSVC)
+  message(STATUS "[ZLIB Debug] BUILD_SHARED_LIBS=${BUILD_SHARED_LIBS}")
+  message(STATUS "[ZLIB Debug] CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
+  message(STATUS "[ZLIB Debug] CMAKE_GENERATOR=${CMAKE_GENERATOR}")
+  message(STATUS "[ZLIB Debug] LIB_NAME=${LIB_NAME}")
+endif()
+
 install(TARGETS ${LIB_NAME}
   EXPORT ZLIBTargets
   RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
@@ -292,4 +296,4 @@ install(FILES
   DESTINATION "${INSTALL_CMAKE_DIR}" )
 
 # Install the export set for use with the install-tree
-install(EXPORT ZLIBTargets DESTINATION "${INSTALL_CMAKE_DIR}")
+install(EXPORT ZLIBTargets DESTINATION ${DEF_INSTALL_CMAKE_DIR})
