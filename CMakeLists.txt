@@ -62,9 +62,9 @@ endif()
 check_include_file(unistd.h Z_HAVE_UNISTD_H)
 
 if(WIN32 AND NOT CYGWIN)
-  set(DEF_INSTALL_CMAKE_DIR CMake)
+  set(DEF_INSTALL_CMAKE_DIR cmake)
 else()
-  set(DEF_INSTALL_CMAKE_DIR lib/CMake/zlib)
+  set(DEF_INSTALL_CMAKE_DIR lib/cmake/zlib)
 endif()
 set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
   "Installation directory for CMake files")
